@@ -1,8 +1,8 @@
 # onedrive-cli-api
 
-This project offers an utility (written in python) that allow to modify the sharing profile and permissions of files and directories in your OneDrive directly from command line. The utility works on every platform (Unix,Mac,Windows) and can be run from other scripts of yours. In this way you can automate and/or automatize your workflows. Thorough the command line or by means of other scripts, you can now instantly and simultaneously change the permissions for all students (possibly over a different set of files and assignments for every student) at the start of an exam. Apart from the start or end phases of exams and competitions, this more gnerally helps in any other situation where appropriate timing or even just ease of use, precision, error-resiliency, and robustness might turn essential (let alone the important time savings for the operator).
+This project offers an utility (written in python) that allow to modify the sharing profile and permissions of files and directories in your OneDrive directly from command line. The utility works on every platform (Unix,Mac,Windows) and can be run from other scripts of yours. In this way you can automate and/or automatize your workflows. Thorough the command line or by means of other scripts, you can now instantly and simultaneously (and with no risk of introducing errors) change the permissions for all students (possibly over a different set of files and assignments for every student) at the start of an exam. Apart from the start or end phases of exams and competitions, this more generally helps in any other situation where appropriate timing or even just ease of use, precision, error-resiliency, and robustness might turn essential (let alone the important time savings for the operator).
 
-A description (updated to november 2020) on how some of these operations can be performed by hand, through the standard GUI of OneDrive (as in november 2020) is contained in the file `getby.sharing_fatto_a_mano`.
+A description (updated to November 2020) on how some of these operations can be performed by hand, through the standard GUI of OneDrive (as in November 2020) is contained in the file `getby.sharing_fatto_a_mano`.
 
 
 ## Setup
@@ -13,41 +13,75 @@ In this section you find instructions on how to set up tokens and permissions fo
 </details>
 
 <details><summary>Istruzioni per il Setup - Italian</summary>
+
 I passi da compiere sono gli stessi a prescindere dalla piattaforma (Linux/Mac/Windows).
 
 Per utilizzare propriamente il programma, servono due codici generati dal OneDriveManager di Microsoft Azure:
 
-> il CLIENT ID e il TENANT ID.
+1. CLIENT ID
+2. TENANT ID
 
 Entrambe queste stringhe hanno il sequente formato:
 
     ????????-????-????-????-????????????
 
-ossia constano di 4 campi separati dal carattere `-`. Ogni campo è una stringa di caratteri ciascuno dei quali è una cifra oppure un carattere inglese minuscolo. L lunghezze dei campi sono: 8-4-4-4-12.
+ossia constano di 4 campi separati dal carattere `-`. Ogni campo è una stringa di caratteri ciascuno dei quali è una cifra oppure un carattere inglese minuscolo. Le lunghezze dei campi sono: 8-4-4-4-12.
 
-In [figura](figs/CLIENT_TENANT_ID.jpg) puoi vedere la schermata di OneDriveManager dove ti compaiono questi due codici. 
-
-Il CLIENT ID e TENANT ID.
+In [figura](figs/CLIENT_TENANT_ID.jpg) puoi vedere la schermata di OneDriveManager dove ti compaiono questi due codici (CLIENT ID e TENANT ID).
 
 Per ottenere questi due codici, bisogna configurare un account CLIENT di Microsoft e poi configurare un TENANT. Dopodichè si può registrare una propria applicazione per autorizzarla ad agire sul proprio account OneDrive. Dobbiamo infatti autorizzare l'utility se vogliamo poterla utilizzare pr modificare i permessi di accesso ai nostri file su OneDrive.
 
-Si segua questa procedura:
+Il sito ufficiale (ma si dilunga su alcun cose non di vostra pertinenza, nel caso di docenti e studenti assumiamo che, per collegarsi utilmente tra loro, si riferiscano tutti agli accont Microsoft ottenuti dall'istituzione di appartenenza) sarebbe il seguente:
 
 https://docs.microsoft.com/it-it/azure/active-directory/develop/quickstart-register-app
 
-Preciso di settare l'URL della pagina iniziale (dopo aver regiatrato l'applicazione o in fase di registrazione): ad esempio la mia applicazione si chiama OneDriveManager e l'url è https://OneDriveManager.com
-Inoltre fondamentale è settare l'URI di reindirizzamento sempre alla stessa pagina, in modo da permettere all'applicazione di "raccogliere" il token generato e procedere.
-Bisogna anche settare alcuni permessi per l'applicazione (di cui viene richiesta accettazione nella fase di reindirizzamento al browser).
+In definitiva, la procedura da seguire per questa prima fase sarebbe la seguente:
 
-Questi sono i permessi richiesti (alcuni forse sono superflui):
+Per creare la registrazione dell'app, seguire questa procedura:
+
+1. Accedere al [portale di Azure](https://portal.azure.com/).
+
+2. Si selezioni il proprio account Azure che fa capo all'istituzione di riferimento (questa procedura e questa utility possono essere utilizzate anche per ogni altro tuo account Azure, ma assumiamo qui che il lettore sia interessato a condividere con persone della propria istituzione, nel quale caso potrà quindi avvalersi della conoscenza implicita degli indirizzi mail (ad sempio, per gli studenti UniVR essi sono della forma <matricola>@studenti.univr.it). Consigliamo pertanto di procedere con l'account dell'istituzione.
+
+3. Cercare e selezionare Azure Active Directory.
+
+4. In Gestisci selezionare Registrazioni app > Nuova registrazione.
+
+5. Immettere un nome qualsiasi (negli screenshots offerti d'esempio abbiamo inserito "nomeAcasaccio") per l'applicazione cui si intenda riservare delle autorizzazioni d'accesso. Questo sarà il nome che verrà utilizzato per segnalare gli accessi, e comunque potrai sempre modificarlo in un momento successivo. Inoltre, più registrazioni di app possono condividere lo stesso nome. E' invece l'ID applicazione (CLIENT ID) generato automaticamente a identificare in modo univoco l'app all'interno della piattaforma Azure. Inoltre è fondamentale settare sempre l'URI di reindirizzamento ad una pagina con lo stesso nome scelto per l'app, in modo da permettere all'applicazione di "raccogliere" il token generato e procedere. (Nel sostro caso l'URI sarebbe `https://nomeAcasaccio.com`)
+
+6. Dal menù si selezioni la voce `API permissions` per settare i necessari permessi per l'applicazione. Ai nostri scopi basta assegnare i seguenti permessi (alcuni forse sono superflui):
+
+```
+Contacts.ReadWrite
+Files.ReadWrite.All
+People.Read
+User.Read
+User.ReadBasic.All
+User.ReadWrite
+email
+openid
+```
 
 [figura](figs/permissions_set.jpg)
 
-Nota: il codice che scompare all'improvviso, si può reperire tornando al terminale subito dopo esser stati reindirizzati all'autenticazione web (oppure tornando alla console dell'IDE da cui si è lanciato il programma).
+Nota: Comunque, alla prima operazione che richiede un dato permesso tra quelli impostati sopra (o comunque dopo oltre 3600 secondi da ultimo utilizzo), Azure chiede conferma di accettazione della richiesta nella fase di reindirizzamento al browser). 
 
 Nota: da Windows (sia da cmd che da IDE, ad esempio da PyCharm), Linux (da terminale shell bash) o da Mac (da terminale shell zsh) il funzionamento è lo stesso, sia per predisporre la configurazione del client e la registrazione dell'app che per lanciare l'utility python.
 
+
 </details>
+
+## Setup of the util
+
+```bash
+cp data_for_user_customization_template.py  data_for_user_customization.py
+```
+and in the new and personal file `data_for_user_customization.py` fill up the two fields:
+
+1. CLIENT ID
+2. TENANT ID
+
+with your secret data. (You find them in the Overview Tab of your Microsoft Azure Account).
 
 
 ## Usage in action
@@ -94,6 +128,9 @@ oppure
     id??????@studenti.univr.it
 
 </details>
+
+Nota: il codice che scompare all'improvviso, si può reperire tornando al terminale subito dopo esser stati reindirizzati all'autenticazione web (oppure tornando alla console dell'IDE da cui si è lanciato il programma).
+
 
 <details><summary>2. generazion del token</summary>
 

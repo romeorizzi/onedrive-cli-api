@@ -1,4 +1,5 @@
 # protecting your private passwords and/or tokens to your OneDrive account
+data_for_user_customization.py
 *.json
 *.yaml
 

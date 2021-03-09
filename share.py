@@ -1,7 +1,6 @@
 """Python console app with device flow authentication."""
 # Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
 # See LICENSE in the project root for license information.
-# My azur portal (for davide.roznowicz@studenti.univr.it): https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/CallAnAPI/appId/a26dc741-ebf9-40e9-aeae-fb0e9d982d17/isMSAApp/
 
 import pprint
 import base64
@@ -15,29 +14,12 @@ from adal import AuthenticationContext
 import pyperclip
 import requests
 
+from data_for_user_customization import CLIENT_ID, TENANT_ID
 
-
-# Per utilizzare il codice inserire ID dell'account del prof:
-########################## INIZIO ID DA INSERIRE ##############################
-
-CLIENT_ID = 'a26dc741-ebf9-40e9-aeae-fb0e9d982d17'    # questo è il mio CLIENT_ID (app) legato a davide.roznowicz@studenti.univr.it; invece quello legato a Marco Fattorelli era : 'd50ca740-c83f-4d1b-b616-12c519384f0c'    .Controllare il proprio CLIENT ID legato all'applicazione che si è registrata su AZUR)
-AUTHORITY_URL = 'https://login.microsoftonline.com/761a3691-dcda-4008-bb83-b7d2988264a3'   # questo è il mio AUTHORITY_URL. Invece TENANT_ID=761a3691-dcda-4008-bb83-b7d2988264a3 nel mio caso. Controllare il proprio TENANT ID legato all'applicazione che si è registrata su AZUR). L' AUTHORITY_URL di marco fattorelli era: 'https://login.microsoftonline.com/common'
-
-# Se volete potete fare delle prove con uno dei nostri CLIENT (o mio o di Marco): dovrebbe funzionare, perlomeno quello legato a Marco Fattorelli dato che io lo ho sempre usato per fare delle prove.
-
-########################## FINE ID DA INSERIRE ##############################
-
-
+AUTHORITY_URL = 'https://login.microsoftonline.com/' + TENANT_ID 
 
 RESOURCE = 'https://graph.microsoft.com'
 API_VERSION = 'beta'
-
-
-
-
-
-
-
 
 
 def api_endpoint(url):
@@ -129,7 +111,7 @@ if __name__ == '__main__':
     """
 ########################## FINE INPUT ##############################   
     
-    
+
     
     
     
