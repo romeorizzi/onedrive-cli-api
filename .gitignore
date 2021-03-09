@@ -2,6 +2,9 @@
 *.json
 *.yaml
 
+# protecting passwords and/or tokens in the private folder
+/private/**
+
 # backups
 *~
 *.bak
