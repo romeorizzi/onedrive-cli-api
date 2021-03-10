@@ -27,7 +27,7 @@ Entrambe queste stringhe hanno il sequente formato:
 
 ossia constano di 4 campi separati dal carattere `-`. Ogni campo è una stringa di caratteri ciascuno dei quali è una cifra oppure un carattere inglese minuscolo. Le lunghezze dei campi sono: 8-4-4-4-12.
 
-In [figura](figs/CLIENT_TENANT_ID.jpg) puoi vedere la schermata di OneDriveManager dove ti compaiono questi due codici (CLIENT ID e TENANT ID).
+In [figura](figs/OverviewRegisteredApplication2.png) puoi vedere la schermata di OneDriveManager dove ti compaiono questi due codici (CLIENT ID e TENANT ID).
 
 Per ottenere questi due codici, bisogna configurare un account CLIENT di Microsoft e poi configurare un TENANT. Dopodichè si può registrare una propria applicazione per autorizzarla ad agire sul proprio account OneDrive. Dobbiamo infatti autorizzare l'utility se vogliamo poterla utilizzare pr modificare i permessi di accesso ai nostri file su OneDrive.
 
