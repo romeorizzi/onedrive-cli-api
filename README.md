@@ -132,9 +132,9 @@ oppure
 Nota: il codice che scompare all'improvviso, si può reperire tornando al terminale subito dopo esser stati reindirizzati all'autenticazione web (oppure tornando alla console dell'IDE da cui si è lanciato il programma).
 
 
-<details><summary>2. generazion del token</summary>
+<details><summary>2. generazione del token</summary>
 
-Dopo aver verificato la corrispondenza tra CLIENT_ID, TENANT_ID forniti, l'applicazione riesce a entrare in funzione e viene generato un token (che appunto viene salvato nel file token.json) che permette di interagire con l'API di OneDrive (e quindi spostare, inviare file) per 3600 secondi (ossia 100 minuti).
+Dopo aver verificato la corrispondenza tra CLIENT_ID, TENANT_ID forniti, l'applicazione riesce a entrare in funzione e viene generato un token. Questo token viene salvato nel file `token.json` e permette di interagire con l'API di OneDrive (e quindi spostare, e inviare/condividere file) per 3600 secondi (ossia 100 minuti).
 
 </details>
 
@@ -142,7 +142,7 @@ Dopo aver verificato la corrispondenza tra CLIENT_ID, TENANT_ID forniti, l'appli
 
 Sarai reindirizzato ad una pagina web dove si chiede di autorizzare l'app ad accedere ad uno specifico account OneDrive.
 
-Dopo la vostra conferma, l'utility python esegue la sua consegna sfruttando l'API per prelevare il file.pdf e inviarlo allo studente di cui mail sopra col permesso indicato. Se il processo è andato a buon fine, su quel terminale compare riposta [200] o [201], e poi la conferma che il file è stato inviato correttamente.
+Dopo la vostra conferma, l'utility python esegue la sua consegna sfruttando l'API per condividere un file specificato con lo studente registrato a OneDrive con la mail specificata, ed attribuendo ad esso il permesso indicato (r=sola lettura, w=lettura e scrittura). Se il processo è andato a buon fine, su quel terminale compare riposta [200] o [201], e poi la conferma che il file è stato inviato correttamente.
 
 </details>
 
@@ -155,7 +155,7 @@ Allo studente arriverà una mail in cui, dopo essersi autenticato con le credenz
 
 Nota: da Windows (sia da cmd che da IDE, ad esempio da PyCharm), Linux (da terminale shell bash) o da Mac (da terminale shell zsh) il funzionamento è lo stesso, sia per predisporre la configurazione del client e la registrazione dell'app che per lanciare l'utility python.
 
-Nota (solo privata): il codice myshare.py esmplifica l'uso. Esso contiene qualche commento in cui si evidenzia dove vadano inserit dati specifici.
+Nota (solo privata): lo script `myshare.py` esemplifica l'uso. Esso contiene qualche commento in cui si evidenzia dove vadano inseriti i dati che è necessario specificare.
 
 
 </details>
