@@ -18,6 +18,10 @@ from data_for_user_customization import CLIENT_ID, TENANT_ID
 
 AUTHORITY_URL = 'https://login.microsoftonline.com/' + TENANT_ID 
 
+print(f"TENANT_ID: {TENANT_ID}")
+print(f"CLIENT_ID: {CLIENT_ID}")
+print(f"AUTHORITY_URL: {AUTHORITY_URL}")
+
 RESOURCE = 'https://graph.microsoft.com'
 API_VERSION = 'beta'
 
@@ -80,20 +84,12 @@ def invite_student(session, item_id, student_mail, permission): # item_id is res
     return (response)
 
 
-
-
-
-
-
-
-
-
-# Per utilizzare il codice modificate questi parametri (o inseriteli da terminale come argv[])
-########################## INIZIO INPUT ##############################
 if __name__ == '__main__':
     
+########################## INIZIO INPUT ##############################
+# Per utilizzare il codice modificate questi parametri (o inseriteli da terminale come argv[])
     if len(sys.argv) == 1:
-        print("share.py rel_path_of_file_from_root student_mail r|w")
+        print(f"Usage:\n   {sys.argv[0]} rel_path_of_file_from_root student_mail (r|w)")
         sys.exit()
     item_path = sys.argv[1]
     student_mail = sys.argv[2]
@@ -110,11 +106,6 @@ if __name__ == '__main__':
     permission = 'read'
     """
 ########################## FINE INPUT ##############################   
-    
-
-    
-    
-    
     
     
     GRAPH_SESSION = device_flow_session(CLIENT_ID)
