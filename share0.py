@@ -96,8 +96,8 @@ def invite_student(session, item_id, student_mail, permission):
 
 
 if len(sys.argv) != 4:
-    print("Usage: ./share.py file_path student_mail -r|-w")
-    print("Example: ./share.py esamiRO/2020-07-27/id076596 id076596@studenti.univr.it -r")
+    print("Usage: share.py file_path student_mail -r|-w")
+    print("Example: share.py esamiRO/2020-07-27/id076596 id076596@studenti.univr.it -r")
     sys.exit()
 
 item_path = sys.argv[1]
