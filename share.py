@@ -94,8 +94,8 @@ def get_item_id(session, item_path):
     print(f'Getting id of {fname_only}...')
     endpoint = f'/me/drive/root:/{item_path}'
     response = session.get(api_endpoint(endpoint)) # response contiene info sulla pagina (docum) aperto dall'url in input
-    print(response)
-    print('json', response.json())
+    #print(response)
+    #print('json', response.json())
     return response.json()
 
 
@@ -219,6 +219,7 @@ if __name__ == '__main__':
     
     GRAPH_SESSION = device_flow_session(CLIENT_ID)
     if GRAPH_SESSION: # if None --> False
+        print(get_item_id(GRAPH_SESSION, item_path))
         item_id = get_item_id(GRAPH_SESSION, item_path)['id'] # esempio: item_id='01GJ5S5QPJL4RWEX72O5A2VCU2GGMS6UVZ'
         if permission not in ['-r', '-w', 'del_all']:
             print(invite_student(GRAPH_SESSION, item_id, student_mail, permission))
