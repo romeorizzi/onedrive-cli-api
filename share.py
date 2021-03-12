@@ -18,7 +18,7 @@ import os.path
 from os import path
 from datetime import datetime
 
-from data_for_user_customization_template import CLIENT_ID, TENANT_ID
+from data_for_user_customization import CLIENT_ID, TENANT_ID
 
 AUTHORITY_URL = 'https://login.microsoftonline.com/' + TENANT_ID 
 

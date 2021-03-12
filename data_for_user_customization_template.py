@@ -1,4 +1,4 @@
-# Dopo avr copiato il present file di tmplat nel file data_for_user_customization.py  inserisci i tuoi codici prsonali nei due campi seguenti:
+# Dopo aver copiato il presente file di template nel file data_for_user_customization.py  inserisci i tuoi codici personali nei due campi seguenti:
 
 TENANT_ID=''
 CLIENT_ID = ''

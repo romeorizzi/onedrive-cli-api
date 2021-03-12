@@ -5,11 +5,13 @@ This project offers an utility (written in python) that allow to modify the shar
 A description (updated to November 2020) on how some of these operations can be performed by hand, through the standard GUI of OneDrive (as in November 2020) is contained in the file `getby.sharing_fatto_a_mano`.
 
 
-## Setup
+## Setup of the Permissions within your Azure Account
 
 In this section you find instructions on how to set up tokens and permissions for your OneDrive account so that our scripts can work and export their basic functionalities.
 
 <details><summary>Setup Instructions - English</summary>
+
+To be translated from the italian version.
 </details>
 
 <details><summary>Istruzioni per il Setup - Italian</summary>
@@ -39,39 +41,41 @@ Ma esso si dilunga su alcune cose non di reale pertinenza per l'uso che abbiamo 
 
 In definitiva, la procedura da seguire per la prima fase (registrazione dell'app) può allora essere riassunta nella seguente:
 
-1. Accedere al [portale di Azure](https://portal.azure.com/).
+1. Accedere al [portale di Azure](https://portal.azure.com/). Verrà chiesto di [scegliere l'account con cui procedere](figs/AzureLoginChooseAccount.png).
 
-2. Si selezioni il proprio account Azure che fa capo all'istituzione di riferimento (questa procedura e questa utility possono essere utilizzate anche per ogni altro tuo account Azure, ma assumiamo qui che il lettore sia interessato a condividere con persone della propria istituzione, nel quale caso potrà quindi avvalersi della conoscenza implicita degli indirizzi mail (ad sempio, per gli studenti UniVR essi sono della forma <matricola>@studenti.univr.it). Consigliamo pertanto di procedere con l'account dell'istituzione.
+2. Se si appartiene ad un'istituzione che offre OneDrive, e la condivisione dei file è intesa avvenire principalmente entro l'istituzione, conviene selezionare il proprio account Azure che fa capo all'istituzione di riferimento. Ad esempio, [io entro così per conto UniVR](figs/LoginAzureUniVR.png). In ogni caso, la nostra utility e la procedura di seguito descritta possono essere utilizzate anche per ogni altro tuo account Azure.
 
-3. Cercare e selezionare Azure Active Directory.
+3. Cercare e selezionare [Azure Active Directory](figs/selezionareAzureActiveDirectory.png).
 
 4. In Gestisci selezionare Registrazioni app > Nuova registrazione.
 
-5. Immettere un nome qualsiasi (negli screenshots offerti d'esempio abbiamo inserito "nomeAcasaccio") per l'applicazione cui si intenda riservare delle autorizzazioni d'accesso. Questo sarà il nome che verrà utilizzato per segnalare gli accessi, e comunque potrai sempre modificarlo in un momento successivo. Inoltre, più registrazioni di app possono condividere lo stesso nome. E' invece l'ID applicazione (CLIENT ID) generato automaticamente a identificare in modo univoco l'app all'interno della piattaforma Azure. Inoltre è fondamentale settare sempre l'URI di reindirizzamento ad una pagina con lo stesso nome scelto per l'app, in modo da permettere all'applicazione di "raccogliere" il token generato e procedere. (Nel sostro caso l'URI sarebbe `https://nomeAcasaccio.com`)
+5. Immettere un nome qualsiasi ([nello screenshot offerto d'esempio](figs/RegisterAnApplication.png) e per il proseguio di questo esempio abbiamo inserito "nomeAcasaccio") per l'applicazione cui si intenda riservare delle autorizzazioni d'accesso. Questo sarà il nome che verrà utilizzato per segnalare gli accessi, e comunque potrai sempre modificarlo in un momento successivo. Inoltre, più registrazioni di app possono condividere lo stesso nome. E' invece l'ID applicazione (CLIENT ID) generato automaticamente a identificare in modo univoco l'app all'interno della piattaforma Azure. Inoltre è fondamentale settare sempre l'URI di reindirizzamento ad una pagina con lo stesso nome scelto per l'app, in modo da permettere all'applicazione di "raccogliere" il token generato e procedere. (Nel sostro caso l'URI sarebbe `https://nomeAcasaccio.com`)
 
-6. Dal menù si selezioni la voce `API permissions` per settare i necessari permessi per l'applicazione. Ai nostri scopi basta assegnare i seguenti permessi (alcuni forse sono superflui):
+6. Dal menù si selezioni la voce `API permissions` per settare i necessari permessi per l'applicazione. Ai nostri scopi [basta assegnare i seguenti permessi](figs/PermissionsRequested.png) (alcuni forse sono superflui):
 
-```
-Contacts.ReadWrite
-Files.ReadWrite.All
-People.Read
-User.Read
-User.ReadBasic.All
-User.ReadWrite
-email
-openid
-```
+    1. [Contacts.ReadWrite](figs/ContactsPermissions.png)
+    2. [Files.ReadWrite.All](figs/FilesPermissions.png)
+    3. [People.Read](figs/PeoplePermissions.png)
+    4. [User.Read](figs/UserPermissions.png)
+    5. [User.ReadBasic.All](figs/UserPermissions.png)
+    6. [User.ReadWrite](figs/UserPermissions.png)
+    7. [email](OpenldPermissions.png)
+    8. [openid](figs/openidPermissions.png)
+
+abbiamo inoltre dovuto specificare non solo lo [URL come da questa schermata](figs/SetURL.png) ma anche il [domain come da questa schermata](figs/SelectDomain.png) e (ovviamente in maniera coerente con il nome scelto per l'applicazione, il nesso è illustato appunto [in questa schermata](figs/SetNameAndURIofTheApp.png) ) anche lo URI. E' probabile che anche tu dovrai immettere questi valori nelle schermate più sopra (od analoghe, purtroppo queste interfacce GUI promettono scarsa stabilità). Condividiamo la pena (ma pensate che una volta fatto questo nn dovrete più perdere il vostro tempo, i vostri click, i vostri nervi, e i vostri occhi sulle GUI di OneDrive).
+Abbiamo infine dovuto settare a true (lo abbiamo trovato inizializzato a null) il campo ``allowPublicClient` di questa schermata](figs/SetManifest.png), si veda il campo dove è rimasto posizionato il cursore.
+
 
 #### Other Permissions
 
-You can of course set other permissions depending on your intended use.
-
-Quindi prima di tutto provi a settare sia "URL pagina iniziale" che "Dominio dell'entita di pubblicazione"...ovviamente in maniera coerente con il suo nome dell'applicazione
-
-
-
+Il quadro delle permissions che noi abbiamo trovato bastanti ai nostri scopi è il seguente:
 
 [figura](figs/permissions_set.jpg)
+
+You can of course set other permissions depending on your intended use.
+
+
+#### Note aggiuntive
 
 Nota: Comunque, alla prima operazione che richiede un dato permesso tra quelli impostati sopra (o comunque dopo oltre 3600 secondi da ultimo utilizzo), Azure chiede conferma di accettazione della richiesta nella fase di reindirizzamento al browser). 
 
@@ -80,7 +84,7 @@ Nota: da Windows (sia da cmd che da IDE, ad esempio da PyCharm), Linux (da termi
 
 </details>
 
-## Setup of the util
+## Setup of the util on your local machine
 
 ```bash
 cp data_for_user_customization_template.py  data_for_user_customization.py
@@ -98,10 +102,12 @@ with your secret data. (You find them in the Overview Tab of your Microsoft Azur
 In this section you find instructions on how to use our utility to change the sharing status of your files or folders under OneDrive. The utility can be used from within a script in order to automatize processes and make them almost instantanous (like at the start or end of an exam).
 
 <details><summary>Usage Instructions - English</summary>
+
+To be translated from the italian version.
 </details>
 
 <details><summary>Istruzioni d'Uso - Italiano</summary>
-Dopo aver effettuato il [Setup](#setup) e scaricati i pacchetti richiesti, l'utility funziona come segue:
+Dopo aver effettuato il [Setup dei permssi nel tuo account Azure](#setup-of-the-permissions-within-your-azure-account) e la [configurazione della util](#setup-of-the-util-on-your-local-machine), e, scaricati i pacchetti che ti verranno richiesti in quanto necssari al suo funzionamento, l'utility funziona come segue:
 
 <details><summary>1. immissione del comando da shell</summary>
 
@@ -117,8 +123,10 @@ tipo_condivisione: specifica la modalità di condivisione da settare per quel pa
 
 | arg_val  | tipo di condivisione  |
 |---:|:---|
-|  r | solo lettura     |
-|  w |  anche scrittura |
+|  r | assegnare permesso di sola lettura    |
+|  w | assegnare permesso anche di scrittura |
+| -w | togliere permesso di scrittura        |
+| -r | togliere anche permesso di  lettura   |
 
 buon_indirizzo_mail_destinatario: deve essere un buon indirizzo mail nel senso che:
 
@@ -138,8 +146,8 @@ oppure
 
 </details>
 
-Nota: il codice che scompare all'improvviso, si può reperire tornando al terminale subito dopo esser stati reindirizzati all'autenticazione web (oppure tornando alla console dell'IDE da cui si è lanciato il programma).
-
+Nota: una volta immesso il comando (invocata la util) si apre una prima [finestra di Azure dove si richiede di sceglire l'account per l'applicazione](figs/PickAnAccount.png) seguita da una [finestra di Azure dove si richiede di immettere il codice comparso a terminale a valle dell'immissione del comando](figs/EnterCode.png). Si torni quindi al terminale (oppure alla console dell'IDE da cui si è lanciato il programma) per recuperare tale codice e, per copia ed incolla, lo si insrisca dove richiesto per l'autenticazione web.
+Questa operazione va fatta solo per la prima chiamata alla util, dopodichè il sistema consentirà automaticamente tutte le operazioni a seguire per un intervallo di tempo di un'ora.
 
 <details><summary>2. generazione del token</summary>
 
