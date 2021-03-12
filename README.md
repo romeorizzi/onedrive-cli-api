@@ -1,6 +1,6 @@
 # onedrive-cli-api
 
-This project offers an utility (written in python) that allow to modify the sharing profile and permissions of files and directories in your OneDrive directly from command line. The utility works on every platform (Unix,Mac,Windows) and can be run from other scripts of yours. In this way you can automate and/or automatize your workflows. Through the command line or by means of other scripts, you can now instantly and simultaneously (and with no risk of introducing errors) change the permissions for all students (possibly over a different set of files and assignments for every student) at the start of an exam. Apart from the start or end phases of exams and competitions, this more generally helps in any other situation where appropriate timing or even just ease of use, precision, error-resiliency, and robustness might turn essential (let alone the important time savings for the operator).
+This project offers an utility (written in python) that allow to modify the sharing profile and permissions of files and directories in your OneDrive directly from command line. The utility works on every platform (Unix,Mac,Windows) and can be run from other scripts of yours. In this way you can automate and/or automatize your workflows. Through the command line or by means of other scripts, you can now instantly and simultaneously change the permissions for all students. In this way you can readily assign to every student his own profile of permissions over a personalized set of files that differs from student to student, while avoiding to burdening things and introduce errors in the tedious and lengthy operations that would be otherwise required from the OneDrive GUI). All these syncs will now take a breeze at the start or at the end of an exam, when timing is crucial. Apart from the start or end phases of exams and competitions, this more generally helps in any other situation where appropriate timing or even just ease of use, precision, error-resiliency, and robustness might turn essential (let alone the important time savings for the operator).
 
 A description (updated to November 2020) on how some of these operations can be performed by hand, through the standard GUI of OneDrive (as in November 2020) is contained in the file `getby.sharing_fatto_a_mano`.
 
@@ -31,13 +31,13 @@ In [figura](figs/CLIENT_TENANT_ID.jpg) puoi vedere la schermata di OneDriveManag
 
 Per ottenere questi due codici, bisogna configurare un account CLIENT di Microsoft e poi configurare un TENANT. Dopodichè si può registrare una propria applicazione per autorizzarla ad agire sul proprio account OneDrive. Dobbiamo infatti autorizzare l'utility se vogliamo poterla utilizzare pr modificare i permessi di accesso ai nostri file su OneDrive.
 
-Il sito ufficiale (ma si dilunga su alcun cose non di vostra pertinenza, nel caso di docenti e studenti assumiamo che, per collegarsi utilmente tra loro, si riferiscano tutti agli accont Microsoft ottenuti dall'istituzione di appartenenza) sarebbe il seguente:
+Il sito Azure con della documentazione ufficiale sarebbe il seguente:
 
 https://docs.microsoft.com/it-it/azure/active-directory/develop/quickstart-register-app
 
-In definitiva, la procedura da seguire per questa prima fase sarebbe la seguente:
+Ma esso si dilunga su alcune cose non di reale pertinenza per l'uso che abbiamo in mente noi: nel caso di docenti e studenti assumiamo che, per collegarsi utilmente tra di loro, siano tutti tenuti o comunque prediligano riferirsi agli account Microsoft ottenuti dall'istituzione di appartenenza. Si noti che quando questa scelta può essere adottata (o sono pochi i destinatari non coperti in questo modo), si ha poi spesso l'ulteriore benefit che gli indirizzi mail stessi (che da Azure vengono utilizzati a stregua di identificativi cui attribuire i permessi) possono essere automaticamente generati. 
 
-Per creare la registrazione dell'app, seguire questa procedura:
+In definitiva, la procedura da seguire per la prima fase (registrazione dell'app) può allora essere riassunta nella seguente:
 
 1. Accedere al [portale di Azure](https://portal.azure.com/).
 
@@ -61,6 +61,15 @@ User.ReadWrite
 email
 openid
 ```
+
+#### Other Permissions
+
+You can of course set other permissions depending on your intended use.
+
+Quindi prima di tutto provi a settare sia "URL pagina iniziale" che "Dominio dell'entita di pubblicazione"...ovviamente in maniera coerente con il suo nome dell'applicazione
+
+
+
 
 [figura](figs/permissions_set.jpg)
 
