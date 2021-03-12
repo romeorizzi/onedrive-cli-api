@@ -95,7 +95,7 @@ def get_item_id(session, item_path):
     endpoint = f'/me/drive/root:/{item_path}'
     response = session.get(api_endpoint(endpoint)) # response contiene info sulla pagina (docum) aperto dall'url in input
     print(response)
-    #print('json', response.json())
+    print('json', response.json())
     return response.json()
 
 
@@ -126,7 +126,7 @@ def print_current_permissions(response):
                  email = response.json()['value'][k]['grantedToIdentities'][j]['user']['email']
                  perm_granted = response.json()['value'][k]['roles']
                  perm_id = response.json()['value'][k]['id']
-                 print(f"mail: {email}\t      permission: {perm_granted}\t      perm-id: {perm_id}")
+                 print(f"mail: {email}\t      permission: {perm_granted}")
 
 
 
