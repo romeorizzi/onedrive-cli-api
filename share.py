@@ -146,7 +146,8 @@ def remove_student_permission(session, item_id, student_mail, permission):
     print(f'Removing permission ({permission}) to shared item from email {student_mail}...')
     endpoint = f'/me/drive/items/{item_id}/permissions'
     response = session.get(api_endpoint(endpoint))
-    
+    print(response.json())
+
     perm_id = False
     for k in range(0,len(response.json()['value'])):
     # if the key grantedToIdentities is present for this specific k
@@ -219,7 +220,6 @@ if __name__ == '__main__':
     
     GRAPH_SESSION = device_flow_session(CLIENT_ID)
     if GRAPH_SESSION: # if None --> False
-        print(get_item_id(GRAPH_SESSION, item_path))
         item_id = get_item_id(GRAPH_SESSION, item_path)['id'] # esempio: item_id='01GJ5S5QPJL4RWEX72O5A2VCU2GGMS6UVZ'
         if permission not in ['-r', '-w', 'del_all']:
             print(invite_student(GRAPH_SESSION, item_id, student_mail, permission))
