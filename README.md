@@ -146,8 +146,8 @@ oppure
 
 </details>
 
-Nota: una volta immesso il comando (invocata la util) si apre una prima [finestra di Azure dove si richiede di sceglire l'account per l'applicazione](figs/PickAnAccount.png) seguita da una [finestra di Azure dove si richiede di immettere il codice comparso a terminale a valle dell'immissione del comando](figs/EnterCode.png). Si torni quindi al terminale (oppure alla console dell'IDE da cui si è lanciato il programma) per recuperare tale codice e, per copia ed incolla, lo si insrisca dove richiesto per l'autenticazione web.
-Questa operazione va fatta solo per la prima chiamata alla util, dopodichè il sistema consentirà automaticamente tutte le operazioni a seguire per un intervallo di tempo di un'ora.
+Nota: una volta immesso il comando (invocata la util) si apre una prima [finestra di Azure dove si richiede di immettere il codice comparso a terminale a valle dell'immissione del comando](figs/EnterCode.png). Si torni quindi al terminale (oppure alla console dell'IDE da cui si è lanciato il programma) per recuperare tale codice e, per copia ed incolla, lo si insrisca dove richiesto per l'autenticazione web. Una volta immesso correttamente il codice compare una [finestra di Azure dove si richiede di sceglire l'account per l'applicazione](figs/PickAnAccount.png), infine compare una finestra di conferma che siamo chiamati a chiudere. In realtà l'apparire di questa finestra di conferma non significa che l'operazione sia andata in porto ed è invece opportuno controllare quanto apparso al terminale.
+L'operazione di inserimento del codice e di selezione dell'account va fatta solo per la prima chiamata alla util, dopodichè il sistema consentirà automaticamente tutte le operazioni a seguire per un intervallo di tempo di un'ora.
 
 <details><summary>2. generazione del token</summary>
 
