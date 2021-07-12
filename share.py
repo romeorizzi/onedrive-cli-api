@@ -94,7 +94,7 @@ def get_item_id(session, item_path):
     print(f'Getting id of {fname_only}...')
     endpoint = f'/me/drive/root:/{item_path}'
     response = session.get(api_endpoint(endpoint)) # response contiene info sulla pagina (docum) aperto dall'url in input
-    print(response)
+    #print(response)
     #print('json', response.json())
     return response.json()
 
@@ -126,7 +126,7 @@ def print_current_permissions(response):
                  email = response.json()['value'][k]['grantedToIdentities'][j]['user']['email']
                  perm_granted = response.json()['value'][k]['roles']
                  perm_id = response.json()['value'][k]['id']
-                 print(f"mail: {email}\t      permission: {perm_granted}\t      perm-id: {perm_id}")
+                 print(f"mail: {email}\t      permission: {perm_granted}")
 
 
 
@@ -146,7 +146,8 @@ def remove_student_permission(session, item_id, student_mail, permission):
     print(f'Removing permission ({permission}) to shared item from email {student_mail}...')
     endpoint = f'/me/drive/items/{item_id}/permissions'
     response = session.get(api_endpoint(endpoint))
-    
+    print(response.json())
+
     perm_id = False
     for k in range(0,len(response.json()['value'])):
     # if the key grantedToIdentities is present for this specific k
