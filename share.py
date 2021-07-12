@@ -176,8 +176,10 @@ def remove_student_permission(session, item_id, student_mail, permission):
     
     
 if len(sys.argv) != 4:
-    print("Usage: share.py file_path student_mail -r|-w")
-    print("Example: share.py esamiRO/2020-07-27/id076596 id076596@studenti.univr.it -r")
+    print("Usage: python onedrive-cli-api/share.py file_path student_mail (r|w|-r|-w)")
+    print("Example 1 (condividi in sola lettura): python onedrive-cli-api/share.py esamiRO/2021-06-18/id386gdz id386gdz@studenti.univr.it r")
+    print("Example 2 (rimuovi condivisione in scrittura ma mantienila in lettura): python onedrive-cli-api/share.py esamiRO/2021-06-18/id386gdz id386gdz@studenti.univr.it -w")
+    print("NOTE: The currently valid 'token.json' file should be present in the folder from where you lounch python. Therefore, we assumes that the currently valid 'token.json' file is placed in the folder ~/OneDrive and that onedrive-cli-api and esamiRO are both subdirectories of this folder.")
     sys.exit()
 
     
