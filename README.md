@@ -31,7 +31,7 @@ ossia constano di 4 campi separati dal carattere `-`. Ogni campo è una stringa 
 
 In [figura](figs/OverviewRegisteredApplication2.png) puoi vedere la schermata di OneDriveManager dove ti compaiono questi due codici (CLIENT ID e TENANT ID).
 
-Per ottenere questi due codici, bisogna configurare un account CLIENT di Microsoft e poi configurare un TENANT. Dopodichè si può registrare una propria applicazione per autorizzarla ad agire sul proprio account OneDrive. Dobbiamo infatti autorizzare l'utility se vogliamo poterla utilizzare pr modificare i permessi di accesso ai nostri file su OneDrive.
+Per ottenere questi due codici, bisogna configurare un account CLIENT di Microsoft e poi configurare un TENANT. Dopodichè si può registrare una propria applicazione per autorizzarla ad agire sul proprio account OneDrive. Dobbiamo infatti autorizzare l'utility se vogliamo poterla utilizzare per modificare i permessi di accesso ai nostri file su OneDrive.
 
 Il sito Azure con della documentazione ufficiale sarebbe il seguente:
 
@@ -107,7 +107,7 @@ To be translated from the italian version.
 </details>
 
 <details><summary>Istruzioni d'Uso - Italiano</summary>
-Dopo aver effettuato il [Setup dei permssi nel tuo account Azure](#setup-of-the-permissions-within-your-azure-account) e la [configurazione della util](#setup-of-the-util-on-your-local-machine), e, scaricati i pacchetti che ti verranno richiesti in quanto necssari al suo funzionamento, l'utility funziona come segue:
+Dopo aver effettuato il [Setup dei permessi nel tuo account Azure](#setup-of-the-permissions-within-your-azure-account) e la [configurazione della util](#setup-of-the-util-on-your-local-machine), e, scaricati i pacchetti che ti verranno richiesti in quanto necessari al suo funzionamento, l'utility funziona come segue:
 
 <details><summary>1. immissione del comando da shell</summary>
 
